@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Tweater</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <header>
+    <h1>Tweater</h1>
+    <div class="profile">
+      <div id="profileName"></div>
+      <select name="userSelect" id="userSelect"></select>
+    </div>
+  </header>
+  <main>
+    <form id="tweatForm">
+      <div>
+        <label for="target">Tweating 🍽  </label>
+        <select name="targetTweat" id="targetTweat"></select>
+      </div>
+      <button class="btn">Tweat</button>
+    </form>
+    <div id="mainFeeds" class="feeds"></div>
+  </main>
+  <script src="main.js"></script>
+  <script>
+    APP.init()
+  </script>
+</body>
+</html>
