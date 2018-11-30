@@ -182,7 +182,7 @@ class FeedItem {
       let leftBox = document.createElement('div')
       let rightBox = document.createElement('div')
 
-      leftBox.appendChild(randomPic(user.name.substring(0,1)))
+      leftBox.appendChild(randomPic(user.name ? user.name.substring(0,1) : '?'))
 
       let header = document.createElement('h2')
       let usernameElem = document.createElement('a')
@@ -190,7 +190,11 @@ class FeedItem {
       usernameElem.onclick = (ev) => {
         ev.preventDefault()
         ev.stopPropagation()
-        new ProfileDetail(user.id)
+        if (user.id) {
+          new ProfileDetail(user.id)
+        } else {
+          alert('User unknown!')
+        }
       }
       let dateElem = document.createElement('span')
       dateElem.innerText = ` • ${ formatDate(new Date(this.data.time * 1000)) }`
@@ -495,7 +499,12 @@ window.onclick = (ev) => {
   if (ev.target.className.includes('mention')) {
     ev.stopPropagation()
     ev.stopImmediatePropagation()
-    new ProfileDetail(ev.target.dataset.id)
+    const { id } = ev.target.dataset
+    if (id) {
+      new ProfileDetail(id)
+    } else {
+      alert('User unknown!')
+    }
   }
 }
 
@@ -517,10 +526,12 @@ const formatDate = (date = new Date) => {
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + hour + ':' + min
 }
 
-const randomPic = (initial = '-', addClass) => {
+const randomPic = (initial = '-', addClass = '') => {
   let newPic = document.createElement('div')
   newPic.className = 'initial-pic'
-  newPic.classList.add(addClass)
+  if (addClass) {
+    newPic.classList.add(addClass)
+  }
   newPic.innerText = String(initial).toUpperCase()
   let rgb = []
   for (let i = 0; i < 3; i++) {
@@ -530,7 +541,13 @@ const randomPic = (initial = '-', addClass) => {
   return newPic
 }
 
-const removeDuplicateInArray = (arr) =>{
+const removeDuplicateInArray = (arr = []) =>{
   let unique_array = Array.from(new Set(arr))
   return unique_array
+}
+
+module.exports = {
+  formatDate,
+  randomPic,
+  removeDuplicateInArray
 }

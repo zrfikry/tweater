@@ -1,0 +1,14 @@
+{
+  "name": "tweater",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zrfikry/tweater.git",
+  "author": "Zakky R <zrfikry@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
